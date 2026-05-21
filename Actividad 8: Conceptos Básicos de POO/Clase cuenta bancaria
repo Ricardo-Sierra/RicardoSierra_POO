@@ -1,0 +1,79 @@
+using System;
+
+namespace Cuenta_Bancaria
+{
+    class CuentaBancaria
+    {
+        // Atributos :)
+        public string Titular { get; set; }
+        public string NumeroCuenta { get; set; }
+        public double Saldo { get; set; }
+        public string Nip {  get; set; }
+
+        //METODOS :D
+        public void Depositar(double cantidad)
+        {
+            Saldo = Saldo + cantidad;
+            Console.WriteLine($"El saldo actual es {Saldo}");
+        }
+        public void Liquidar(double cantidad)
+        {
+            if (Saldo < cantidad)
+            {
+                Console.WriteLine("Fondos insuficientes");
+            }
+            else
+            {
+                Saldo -= cantidad;
+                Console.WriteLine($"El saldo actual es {Saldo}");
+            }
+        }
+        public void ConsultarSaldo()
+        {
+            Console.WriteLine("===================================================================================================");
+            Console.WriteLine($"\nBienvenido(a) {Titular}");
+            Console.WriteLine($"Número de cuenta: {NumeroCuenta}\nSu NIP es: {Nip}\nSaldo Actual: ${Saldo}");
+        }
+        public void CambiarNip(string nipactual, string nip)
+        {
+            if (nipactual == Nip)
+            {
+                Nip = nip;
+                Console.WriteLine($"El nuevo NIP de la cuenta es {Nip}");
+            }
+            else
+            {
+                Console.WriteLine("Nip Incorrecto");
+            }
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            CuentaBancaria cb = new CuentaBancaria();
+            cb.Titular = "Abraham Pérez";
+            cb.NumeroCuenta = "12345";
+            cb.Saldo = 2500;
+            cb.Nip = "129";
+            string nip = "";
+
+            //Hacer un Retiro
+            Console.WriteLine("Ingrese la cantidad para retirar");
+            double cantidad = Convert.ToDouble(Console.ReadLine());
+
+            cb.Liquidar(cantidad);
+            //Cambiar NIP
+            Console.WriteLine("Ingrese el NIP actual");
+            string nipactual = Console.ReadLine();
+            if (nipactual == cb.Nip)
+            {
+                Console.WriteLine("Ingrese el nuevo NIP para la cuenta");
+                nip = Console.ReadLine();
+            }
+            cb.CambiarNip(nipactual,nip);
+            cb.ConsultarSaldo(); //No es necesario escribir Console.WriteLine porque el metodo original ya lo tiene
+            Console.ReadKey();
+        }
+    }
+}
