@@ -1,0 +1,74 @@
+using System;
+
+namespace Conversion_Temperaturas
+{
+    internal class Program
+    {
+        static double ConvertirCaF(double c)
+        {
+            double fahrenheit;
+            fahrenheit = (c * 9 / 5) + 32;
+            return fahrenheit;
+        }
+        static double ConvertirCaK(double c)
+        {
+            double kelvin;
+            kelvin = (c + 273.15);
+            return kelvin;
+        }
+        static double ConvertirFaC(double f)
+        {
+            double celsius;
+            celsius = (f - 32) * 5 / 9;
+            return celsius;
+        }
+        static double ConvertirKaC(double k)
+        {
+            double celsius;
+            celsius = k - 273.15;
+            return celsius;
+        }
+        static void Main(string[] args)
+        {
+            int respuesta;
+            string respuesta2;
+            Console.WriteLine("============= Conversión de temperaturas ======================");
+            do
+            {
+                do
+                {
+                    Console.WriteLine("Elige la operación que quieres hacer \n1.Convertir Celsius a Fahrenheit\n2.Convertir Fahrenheit a Celsius");
+                    Console.WriteLine("3.Convertir Celsius a Kelvin\n4.Convertir Kelvin a Celsius");
+                    respuesta = Convert.ToInt32(Console.ReadLine());
+                } while (respuesta <= 0 || respuesta > 4);
+                switch (respuesta)
+                {
+                    case 1:
+                        Console.WriteLine("Ingresa la temperatura en Celsius");
+                        double c = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine($"La temperatura en Fahrenheit es {ConvertirCaF(c)}°F");
+                        break;
+                    case 2:
+                        Console.WriteLine("Ingresa la temperatura en  Fahrenheit");
+                        double f = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine($"La temperatura en Celsius es {ConvertirFaC(f)} °C");
+                        break;
+                    case 3:
+                        Console.WriteLine("Ingresa la temperatura en Celsius");
+                        double c2 = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine($"La temperatura en Kelvin es {ConvertirCaK(c2)} °K");
+                        break;
+                    case 4:
+                        Console.WriteLine("ingresa la temperatura en Kelvin");
+                        double k = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine($"La temperatura en Celsius es {ConvertirKaC(k)} °C");
+                        break;
+                }
+                Console.WriteLine("¿Quieres convertir otra temperatura? si/no");
+                respuesta2 = Console.ReadLine().ToLower();
+            } while (respuesta2 == "si");
+            Console.WriteLine("Ha finalizado el programa");
+            Console.ReadKey();
+        }
+    }
+}
