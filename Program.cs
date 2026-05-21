@@ -1,79 +1,101 @@
 ﻿using System;
 
-namespace Clases_ejemplo
+namespace Examen1
 {
-    public class Persona
+    class MascotaVirtual
     {
-        public int Id { get; set; } //Get es para dar y el set es para poder modificar el valor D:
-        public string Name { get; set; }
-        public string Apellidos { get; set; }
-        public string Sex { get; set; } = string.Empty;
-        public string Curp { get; set; }
-        public int Edad {  get; set; }
+        private string Nombre { get; set; }
+        private int Hambre { get; set;}
+        private int Felicidad { get; set; }
 
-        //constructor
-
-        public Persona(string nombre, string apellidos)
+        //Constructor
+        public void RegistroMascota()
         {
-          Name = nombre;
-            Apellidos = apellidos;
+            string nombre = "";
+            do
+            {
+                Console.WriteLine("Esta es tu nueva mascota :) ¿Cuál es su nombre?");
+                nombre = Console.ReadLine();
+            } while (nombre == null);
+            Nombre = nombre;
+            Hambre = 50;
+            Felicidad = 50;
         }
-        public Persona()
+        //Métodos Públicos
+        public void Alimentar()
         {
-
+            Hambre -= 20;
+            ValidarRango();
+            Console.WriteLine($"{Nombre} está comiendo. Su nivel de hambre ahora es de {Hambre}");
         }
-        public Persona(string nombre)
+
+        public void Jugar()
         {
-            Name = nombre;
+            Felicidad += 15;
+            Hambre += 5;
+            ValidarRango();
+            Console.WriteLine($"Jugaste con {Nombre}. Su nivel de Felicidad es de {Felicidad} y su nivel de hambre es de {Hambre}");
         }
-        public Persona(int id, string nombre, string apellidos, string sex, string curp)
+        public void EstaSaludable ()
         {
-            Id = id;
-            Name = nombre;
-            Apellidos = apellidos;
-            Sex = sex;
-            Curp = curp;
-        }   
-     }
+            if ( Hambre < 70 && Felicidad > 30)
+            {
+                Console.WriteLine("Tu mascota está saludable :)");
+            } else
+            { Console.WriteLine("Tu mascota no está sana. Tienes que cuidarla más :(");}
+        }
+         private void ValidarRango()
+        {
+            if(Hambre <= 0)
+            { Hambre = 0;}
+            if(Hambre >= 100)
+            { Hambre = 100;}
+            if(Felicidad <= 0)
+            {  Felicidad = 0;}
+            if (Felicidad >= 100)
+            { Felicidad = 100;}
+        }
+        public void MostrarEstado()
+        {
+            Console.WriteLine($"El nombre de tu mascota es {Nombre}\nSu nivel de felicidad es de {Felicidad}\nSu nivel de hambre es de {Hambre} ");
+        }
 
-
+    }
     internal class Program
     {
-        static string MayorEdad(int edad)
-        {
-            if (edad >= 18)
-            {
-                return "Eres mayor de edad";
-            }
-            else
-            {
-                return "No eres mayor de edad";
-            }
-        }
         static void Main(string[] args)
         {
-            //Instanciar la clase
-
-            Persona persona2 = new Persona(1, "juan", "Sanchez", "H", "juanprogamer");
-            Console.WriteLine($"{persona2.Name} {persona2.Apellidos}");
-            
-            Persona persona1 = new Persona("Mariana", "Perez");
-            persona1.Name = "Alicia";
-            persona1.Curp = "PADFTHQSH2466704";
-            Console.WriteLine($"{persona1.Name} {persona1.Apellidos}\n{persona1.Curp}");
-
-            Persona persona3 = new Persona();
-            persona3.Name = "Jorge";
-            Console.WriteLine($"{persona3.Name}");
-            persona3.Curp = "DJROWHRAJAFH405865";
-
-
-            Persona persona4 = new Persona("Samuel", "M");
-
-            Persona persona5 = new Persona();
-            Console.WriteLine("Ingresa tu edad");
-            persona5.Edad = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine($"Tu edad es {persona5.Edad} y {MayorEdad(persona5.Edad)}");
+            int respuesta;
+            string respuesta2;
+            MascotaVirtual mascota = new MascotaVirtual();
+            mascota.RegistroMascota();
+            Console.WriteLine("============= INFORMACION DE LA MASCOTA =====================");
+            mascota.MostrarEstado();
+            Console.WriteLine("=============================================================");
+            do
+            {
+                Console.WriteLine("¿Qué quieres hacer?\n1.Alimentar mascota\n2.Jugar con la mascota\n3.Ver salud de la mascota\n4.Mostrar información de la mascota");
+                respuesta = Convert.ToInt32(Console.ReadLine());
+                switch (respuesta)
+                {
+                    case 1:
+                        mascota.Alimentar();
+                        break;
+                    case 2:
+                        mascota.Jugar();
+                        break;
+                    case 3:
+                        mascota.EstaSaludable();
+                        break;
+                    case 4:
+                        mascota.MostrarEstado();
+                        break;
+                }
+                Console.WriteLine("¿Quieres hacer otra acción?");
+                respuesta2 = Console.ReadLine().ToLower();
+            } while (respuesta2 == "si");
+            Console.WriteLine("El estado de tu mascota quedó así:");
+            mascota.MostrarEstado();
             Console.ReadKey();
         }
     }
