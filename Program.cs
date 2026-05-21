@@ -1,73 +1,79 @@
 ﻿using System;
 
-namespace Conversion_Temperaturas
+namespace Clases_ejemplo
 {
+    public class Persona
+    {
+        public int Id { get; set; } //Get es para dar y el set es para poder modificar el valor D:
+        public string Name { get; set; }
+        public string Apellidos { get; set; }
+        public string Sex { get; set; } = string.Empty;
+        public string Curp { get; set; }
+        public int Edad {  get; set; }
+
+        //constructor
+
+        public Persona(string nombre, string apellidos)
+        {
+          Name = nombre;
+            Apellidos = apellidos;
+        }
+        public Persona()
+        {
+
+        }
+        public Persona(string nombre)
+        {
+            Name = nombre;
+        }
+        public Persona(int id, string nombre, string apellidos, string sex, string curp)
+        {
+            Id = id;
+            Name = nombre;
+            Apellidos = apellidos;
+            Sex = sex;
+            Curp = curp;
+        }   
+     }
+
+
     internal class Program
     {
-        static double ConvertirCaF(double c)
+        static string MayorEdad(int edad)
         {
-            double fahrenheit;
-            fahrenheit = (c * 9 / 5) + 32;
-            return fahrenheit;
-        }
-        static double ConvertirCaK(double c)
-        {
-            double kelvin;
-            kelvin = (c + 273.15);
-            return kelvin;
-        }
-        static double ConvertirFaC(double f)
-        {
-            double celsius;
-            celsius = (f - 32) * 5 / 9;
-            return celsius;
-        }
-        static double ConvertirKaC(double k)
-        {
-            double celsius;
-            celsius = k - 273.15;
-            return celsius;
+            if (edad >= 18)
+            {
+                return "Eres mayor de edad";
+            }
+            else
+            {
+                return "No eres mayor de edad";
+            }
         }
         static void Main(string[] args)
         {
-            int respuesta;
-            string respuesta2;
-            Console.WriteLine("============= Conversión de temperaturas ======================");
-            do
-            {
-                do
-                {
-                    Console.WriteLine("Elige la operación que quieres hacer \n1.Convertir Celsius a Fahrenheit\n2.Convertir Fahrenheit a Celsius");
-                    Console.WriteLine("3.Convertir Celsius a Kelvin\n4.Convertir Kelvin a Celsius");
-                    respuesta = Convert.ToInt32(Console.ReadLine());
-                } while (respuesta <= 0 || respuesta > 4);
-                switch (respuesta)
-                {
-                    case 1:
-                        Console.WriteLine("Ingresa la temperatura en Celsius");
-                        double c = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine($"La temperatura en Fahrenheit es {ConvertirCaF(c)}°F");
-                        break;
-                    case 2:
-                        Console.WriteLine("Ingresa la temperatura en  Fahrenheit");
-                        double f = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine($"La temperatura en Celsius es {ConvertirFaC(f)} °C");
-                        break;
-                    case 3:
-                        Console.WriteLine("Ingresa la temperatura en Celsius");
-                        double c2 = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine($"La temperatura en Kelvin es {ConvertirCaK(c2)} °K");
-                        break;
-                    case 4:
-                        Console.WriteLine("ingresa la temperatura en Kelvin");
-                        double k = Convert.ToDouble(Console.ReadLine());
-                        Console.WriteLine($"La temperatura en Celsius es {ConvertirKaC(k)} °C");
-                        break;
-                }
-                Console.WriteLine("¿Quieres convertir otra temperatura? si/no");
-                respuesta2 = Console.ReadLine().ToLower();
-            } while (respuesta2 == "si");
-            Console.WriteLine("Ha finalizado el programa");
+            //Instanciar la clase
+
+            Persona persona2 = new Persona(1, "juan", "Sanchez", "H", "juanprogamer");
+            Console.WriteLine($"{persona2.Name} {persona2.Apellidos}");
+            
+            Persona persona1 = new Persona("Mariana", "Perez");
+            persona1.Name = "Alicia";
+            persona1.Curp = "PADFTHQSH2466704";
+            Console.WriteLine($"{persona1.Name} {persona1.Apellidos}\n{persona1.Curp}");
+
+            Persona persona3 = new Persona();
+            persona3.Name = "Jorge";
+            Console.WriteLine($"{persona3.Name}");
+            persona3.Curp = "DJROWHRAJAFH405865";
+
+
+            Persona persona4 = new Persona("Samuel", "M");
+
+            Persona persona5 = new Persona();
+            Console.WriteLine("Ingresa tu edad");
+            persona5.Edad = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"Tu edad es {persona5.Edad} y {MayorEdad(persona5.Edad)}");
             Console.ReadKey();
         }
     }
