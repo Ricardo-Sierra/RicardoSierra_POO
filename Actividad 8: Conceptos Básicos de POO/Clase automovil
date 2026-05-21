@@ -1,0 +1,60 @@
+using System;
+
+namespace Clase_Automovil
+{
+    public class Automovil
+    {
+        //Atributos :)
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
+        public string Color { get; set; }
+        public int Velocidad { get; set; }
+
+        //Métodos :D
+        public void Encender()
+        {
+            Console.WriteLine($"El automóvil se encendió");
+        }
+        public void Acelerar()
+        {
+            Console.WriteLine($"El automóvil aceleró a {Velocidad} km/h");
+        }
+        public void Frenar()
+        {
+            Console.WriteLine($"El automóvil frenó");
+        }
+        public void MostrarInfo()
+        {
+            Console.WriteLine($"Marca: {Marca}\nModelo: {Modelo}\nColor: {Color}\nVelocidad: {Velocidad}");
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Automovil auto1 = new Automovil();
+            auto1.Marca = "Honda";
+            auto1.Modelo = "2020";
+            auto1.Color = "Rojo Vino";
+            auto1.Velocidad = 120;
+
+            Automovil auto2 = new Automovil();
+            auto2.Marca = "Mazda";
+            auto2.Modelo = "2022";
+            auto2.Color = "Azul";
+            auto2.Velocidad = 125;
+
+            auto1.MostrarInfo();
+            Console.WriteLine("========================================================================");
+            auto2.MostrarInfo();
+            Console.WriteLine("========================================================================");
+            auto1.Encender();
+            auto1.Acelerar();
+            auto1.Frenar();
+            auto2.Encender();
+            auto2.Acelerar();
+            auto2.Frenar();
+            Console.ReadKey();
+        }
+    }
+}
