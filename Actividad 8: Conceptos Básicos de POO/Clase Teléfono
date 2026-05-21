@@ -1,0 +1,51 @@
+using System;
+
+namespace Clase_Telefono
+{
+    public class Telefono
+    {
+        //Atributos :)
+        public int Numero { get; set; }
+        public string Propietario { get; set; }
+        public string Marca { get; set; }
+        public string Contactos { get; set; }
+
+        //Métodos :D
+        public void Llamar(string contacto1)
+        {
+            Console.WriteLine($"{Propietario} ha llamado a {contacto1}");
+        }
+        public void MandarMensaje(string contacto1)
+        {
+            Console.WriteLine($"{Propietario} ha mandado mensaje a {contacto1}");
+        }
+        public void TomarFoto()
+        {
+            Console.WriteLine($"{Propietario} ha tomado una foto");
+        }
+        public void MostrarInfo()
+        {
+            Console.WriteLine($"Propetario del teléfono: {Propietario}\nNúmero de teléfono: {Numero}\nMarca: {Marca}\nContactos: \n{Contactos} ");
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Telefono telefono = new Telefono();
+            telefono.Numero = 981123456;
+            telefono.Propietario = "Gerald";
+            telefono.Marca = "Honor";
+            telefono.Contactos = "Lili";
+            telefono.MandarMensaje(telefono.Contactos);
+            Console.WriteLine("¿A quién quieres llamar?");
+            string contacto1 = Console.ReadLine();
+            telefono.Llamar(contacto1);
+            telefono.TomarFoto();
+            Console.WriteLine("========================================================================");
+            telefono.MostrarInfo();
+            Console.Write(contacto1);
+            Console.ReadKey();
+        }
+    }
+}
