@@ -1,49 +1,71 @@
 ﻿using System;
 
-namespace Arreglos_Bidimensionales
+
+namespace Uso_Funciones
 {
     internal class Program
     {
+        static void header()
+        {
+            Console.WriteLine("Bienvenido al curso programación orientada a objetos");
+            Console.WriteLine("------------------------------------------------------");
+        }
+        static double Sumar(double numero1, double numero2)
+        {
+            return (numero1 + numero2);
+        }
+        static double Resta(double numero1, double numero2)
+        {
+            return (numero1 - numero2); 
+        }
+        static double Multiplicacion(double numero1, double numero2)
+        {
+            return (numero1 * numero2);
+        }
+        static double Division(double numero1, double numero2)
+        {
+            return (numero1 / numero2);
+        }
+        static void Nombre(string mensaje)
+        {
+            Console.WriteLine($"Nombre del programa:{mensaje}");
+        }
         static void Main(string[] args)
         {
-            int columna;
-            int fila;
-            double suma = 0;
-            double promedio;
-            Console.WriteLine("Recorrer tipos de arreglos bidimensionales (matrices)");
-            Console.WriteLine("=====================================================================");
-
+            string programa = "Aprendiendo funciones";
+            string respuesta;
+            header();
+            Nombre(programa);
             do
             {
-                Console.WriteLine("¿Cuántas filas tendrá la matriz?");
-                fila = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("¿Cuántas columnas tendrá la matriz?");
-                columna = Convert.ToInt32(Console.ReadLine());
-            } while (columna == 0 || fila == 0);
-            
-            int[,] matriz = new int[fila, columna];
 
-            for (int i = 0; i < matriz.GetLength(0); i++)
-            {
-                for (int j = 0; j < matriz.GetLength(1); j++)
-                {
-                    Console.WriteLine($"Ingresa el número para {i},{j}");
-                    matriz[i,j] = Convert.ToInt32(Console.ReadLine());
-                }
-            }
-            for (int i = 0; i < matriz.GetLength(0); i++) 
-            {
-                for (int j = 0; j < matriz.GetLength(1); j++)
-                {
-                    suma += matriz[i, j];
-                    Console.WriteLine($"Matriz[{i}, {j}] = {matriz[i,j]}");
-                }
-            }
-            promedio = suma/matriz.Length;
-            Console.WriteLine($"La suma de los elementos de la matriz es {suma} :)");
-            Console.WriteLine($"El promedio de los elementos de la matriz es {promedio} :)");
-            Console.ReadLine();
 
+                Console.WriteLine("¿Qué función quieres hacer? \n1.Suma \n2.Resta\n3.Multiplicación\n4.División");
+                int variable = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Ingresa el primer número");
+                double numero1 = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Ingresa el segundo número");
+                double numero2 = Convert.ToDouble(Console.ReadLine());
+                switch (variable)
+                {
+                    case 1:
+                        Console.WriteLine($"El resultado de la función es:{Sumar(numero1, numero2)}");
+                        break;
+                    case 2:
+                        Console.WriteLine($"El resultado de la función es: {Resta(numero1, numero2)}");
+                        break;
+                    case 3:
+                        Console.WriteLine($"El resultado de la función es: {Multiplicacion(numero1, numero2)}");
+                        break;
+                    case 4:
+                        Console.WriteLine($"El resultado de la función es: {Division(numero1, numero2)}");
+                        break;
+                }
+                Console.WriteLine("¿Quieres hacer otra operación? sí/no");
+                respuesta = Console.ReadLine().ToLower();
+            } while (respuesta == "si");
+            Console.WriteLine("Ha finalizado el programa");
+            Console.ReadKey();
         }
     }
 }
