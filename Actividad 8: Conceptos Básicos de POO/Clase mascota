@@ -1,0 +1,61 @@
+using System;
+
+namespace Clase_Mascota
+{
+    public class Mascota
+    {
+        //Atributos :)
+        public string Nombre { get; set; }
+        public string Sexo { get; set; }
+        public string ColorPelaje { get; set; }
+        public string Edad { get; set; }
+
+        //Métodos :D
+        public void Maullar()
+        {
+            Console.WriteLine($"{Nombre} ha maullado :)");
+        }
+        public void Comer()
+        {
+            Console.WriteLine($"{Nombre} está comiendo :D");
+        }
+        public void Dormir()
+        {
+            Console.WriteLine($"{Nombre} está durmiendo");
+        }
+        public void MostrarInfo()
+        {
+            Console.WriteLine($"Nombre del gato: {Nombre}\nSexo: {Sexo}\nColor del pelaje: {ColorPelaje}\nEdad: {Edad} ");
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Mascota gato1 = new Mascota();
+            gato1.Nombre = "Chilaquil";
+            gato1.Sexo = "Macho";
+            gato1.ColorPelaje = "Blanco y negro";
+            gato1.Edad = "3 años";
+
+            Mascota gato2 = new Mascota();
+            gato2.Nombre = "Yoda";
+            gato2.Sexo = "Hembra";
+            gato2.ColorPelaje = "Gris y Negro";
+            gato2.Edad = "6 años";
+            gato1.MostrarInfo();
+            Console.WriteLine("========================================================================");
+            gato2.MostrarInfo();
+            Console.WriteLine("========================================================================");
+
+            gato1.Comer();
+            gato1.Maullar();
+            gato1.Dormir();
+            gato2.Comer();
+            gato2.Maullar();
+            gato2.Dormir();
+            Console.ReadKey();
+        }
+    }
+}
+
