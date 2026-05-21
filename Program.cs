@@ -1,102 +1,89 @@
 ﻿using System;
 
-namespace Examen1
+namespace Calculo_Figuras
 {
-    class MascotaVirtual
+    public abstract class Figura
     {
-        private string Nombre { get; set; }
-        private int Hambre { get; set;}
-        private int Felicidad { get; set; }
+        public double Lado { get; set; }
+        public double Altura { get; set; }
+        public double Radio {  get; set; }
 
-        //Constructor
-        public void RegistroMascota()
+        public Figura() { }
+        public Figura(double lado)
         {
-            string nombre = "";
-            do
-            {
-                Console.WriteLine("Esta es tu nueva mascota :) ¿Cuál es su nombre?");
-                nombre = Console.ReadLine();
-            } while (nombre == null);
-            Nombre = nombre;
-            Hambre = 50;
-            Felicidad = 50;
+            Lado = lado;
         }
-        //Métodos Públicos
-        public void Alimentar()
-        {
-            Hambre -= 20;
-            ValidarRango();
-            Console.WriteLine($"{Nombre} está comiendo. Su nivel de hambre ahora es de {Hambre}");
-        }
+        public abstract void CalcularArea();
+    }
+    class Cuadrado : Figura
+    {
+        public Cuadrado(double lado) : base (lado) { }
 
-        public void Jugar()
+        public override void CalcularArea() 
         {
-            Felicidad += 15;
-            Hambre += 5;
-            ValidarRango();
-            Console.WriteLine($"Jugaste con {Nombre}. Su nivel de Felicidad es de {Felicidad} y su nivel de hambre es de {Hambre}");
+            double area;
+            area = Lado * Lado;
+            Console.WriteLine($"Valor del lado: {Lado} \nEl área de la figura es {area}");
         }
-        public void EstaSaludable ()
+    }
+    class Triangulo : Figura
+    {
+        public Triangulo(double lado, double altura) : base (lado)
         {
-            if ( Hambre < 70 && Felicidad > 30)
-            {
-                Console.WriteLine("Tu mascota está saludable :)");
-            } else
-            { Console.WriteLine("Tu mascota no está sana. Tienes que cuidarla más :(");}
+            Altura = altura;
         }
-         private void ValidarRango()
+        public override void CalcularArea()
         {
-            if(Hambre <= 0)
-            { Hambre = 0;}
-            if(Hambre >= 100)
-            { Hambre = 100;}
-            if(Felicidad <= 0)
-            {  Felicidad = 0;}
-            if (Felicidad >= 100)
-            { Felicidad = 100;}
+            double area;
+            area = Lado * Altura /2;
+            Console.WriteLine($"Valor de la base: {Lado}. Valor de la altura: {Altura}\nEl área de la figura es {area}");
         }
-        public void MostrarEstado()
+    }
+    class Rectangulo : Figura
+    {
+        public Rectangulo(double lado, double altura) : base(lado)
         {
-            Console.WriteLine($"El nombre de tu mascota es {Nombre}\nSu nivel de felicidad es de {Felicidad}\nSu nivel de hambre es de {Hambre} ");
+            Altura = altura;
         }
-
+        public override void CalcularArea()
+        {
+            double area;
+            area = Lado * Altura;
+            Console.WriteLine($"Valor de la base: {Lado}. Valor de la altura: {Altura}\nEl área de la figura es {area}");
+        }
+    }
+    class Circulo : Figura 
+    {
+        public Circulo(double radio)
+        {
+            Radio = radio;
+        }
+        public override void CalcularArea()
+        {
+            double area;
+            area = (Radio*Radio) * 3.1416;
+            Console.WriteLine($"Valor del radio: {Radio} \nEl área de la figura es {area}");
+        }
     }
     internal class Program
     {
         static void Main(string[] args)
         {
-            int respuesta;
-            string respuesta2;
-            MascotaVirtual mascota = new MascotaVirtual();
-            mascota.RegistroMascota();
-            Console.WriteLine("============= INFORMACION DE LA MASCOTA =====================");
-            mascota.MostrarEstado();
-            Console.WriteLine("=============================================================");
-            do
-            {
-                Console.WriteLine("¿Qué quieres hacer?\n1.Alimentar mascota\n2.Jugar con la mascota\n3.Ver salud de la mascota\n4.Mostrar información de la mascota");
-                respuesta = Convert.ToInt32(Console.ReadLine());
-                switch (respuesta)
-                {
-                    case 1:
-                        mascota.Alimentar();
-                        break;
-                    case 2:
-                        mascota.Jugar();
-                        break;
-                    case 3:
-                        mascota.EstaSaludable();
-                        break;
-                    case 4:
-                        mascota.MostrarEstado();
-                        break;
-                }
-                Console.WriteLine("¿Quieres hacer otra acción?");
-                respuesta2 = Console.ReadLine().ToLower();
-            } while (respuesta2 == "si");
-            Console.WriteLine("El estado de tu mascota quedó así:");
-            mascota.MostrarEstado();
+            Console.WriteLine("============== CALCULO DE FIGURAS =================");
+            Console.WriteLine("======= CUADRADO =======");
+            Cuadrado cuadrado = new Cuadrado(4);
+            cuadrado.CalcularArea();
+            Console.WriteLine("======= Rectángulo =======");
+            Rectangulo rectangulo = new Rectangulo(10, 5);
+            rectangulo.CalcularArea();
+            Console.WriteLine("======= Triángulo =======");
+            Triangulo triangulo = new Triangulo(12, 7);
+            triangulo.CalcularArea();
+            Console.WriteLine("======= Círculo =======");
+            Circulo circulo = new Circulo(8);
+            circulo.CalcularArea();
             Console.ReadKey();
+
         }
     }
 }
