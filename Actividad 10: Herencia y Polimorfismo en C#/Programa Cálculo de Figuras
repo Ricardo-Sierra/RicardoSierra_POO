@@ -1,0 +1,89 @@
+using System;
+
+namespace Calculo_Figuras
+{
+    public abstract class Figura
+    {
+        public double Lado { get; set; }
+        public double Altura { get; set; }
+        public double Radio {  get; set; }
+
+        public Figura() { }
+        public Figura(double lado)
+        {
+            Lado = lado;
+        }
+        public abstract void CalcularArea();
+    }
+    class Cuadrado : Figura
+    {
+        public Cuadrado(double lado) : base (lado) { }
+
+        public override void CalcularArea() 
+        {
+            double area;
+            area = Lado * Lado;
+            Console.WriteLine($"Valor del lado: {Lado} \nEl área de la figura es {area}");
+        }
+    }
+    class Triangulo : Figura
+    {
+        public Triangulo(double lado, double altura) : base (lado)
+        {
+            Altura = altura;
+        }
+        public override void CalcularArea()
+        {
+            double area;
+            area = Lado * Altura /2;
+            Console.WriteLine($"Valor de la base: {Lado}. Valor de la altura: {Altura}\nEl área de la figura es {area}");
+        }
+    }
+    class Rectangulo : Figura
+    {
+        public Rectangulo(double lado, double altura) : base(lado)
+        {
+            Altura = altura;
+        }
+        public override void CalcularArea()
+        {
+            double area;
+            area = Lado * Altura;
+            Console.WriteLine($"Valor de la base: {Lado}. Valor de la altura: {Altura}\nEl área de la figura es {area}");
+        }
+    }
+    class Circulo : Figura 
+    {
+        public Circulo(double radio)
+        {
+            Radio = radio;
+        }
+        public override void CalcularArea()
+        {
+            double area;
+            area = (Radio*Radio) * 3.1416;
+            Console.WriteLine($"Valor del radio: {Radio} \nEl área de la figura es {area}");
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("============== CALCULO DE FIGURAS =================");
+            Console.WriteLine("======= CUADRADO =======");
+            Cuadrado cuadrado = new Cuadrado(4);
+            cuadrado.CalcularArea();
+            Console.WriteLine("======= Rectángulo =======");
+            Rectangulo rectangulo = new Rectangulo(10, 5);
+            rectangulo.CalcularArea();
+            Console.WriteLine("======= Triángulo =======");
+            Triangulo triangulo = new Triangulo(12, 7);
+            triangulo.CalcularArea();
+            Console.WriteLine("======= Círculo =======");
+            Circulo circulo = new Circulo(8);
+            circulo.CalcularArea();
+            Console.ReadKey();
+
+        }
+    }
+}
