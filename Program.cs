@@ -1,89 +1,70 @@
 ﻿using System;
-
-namespace Calculo_Figuras
+namespace Clases_Genericas
 {
-    public abstract class Figura
+    class Caja<T>
     {
-        public double Lado { get; set; }
-        public double Altura { get; set; }
-        public double Radio {  get; set; }
+        //CAMPO PRIVADO DE TIPO T
+        private T Contenido;
 
-        public Figura() { }
-        public Figura(double lado)
-        {
-            Lado = lado;
-        }
-        public abstract void CalcularArea();
-    }
-    class Cuadrado : Figura
-    {
-        public Cuadrado(double lado) : base (lado) { }
+        //CONSTRUCTOR QUE RECIBE EL TIPO T
+        public Caja(T contenido) { Contenido = contenido; }
 
-        public override void CalcularArea() 
+        public void Guardar(T nuevoContenido)
         {
-            double area;
-            area = Lado * Lado;
-            Console.WriteLine($"Valor del lado: {Lado} \nEl área de la figura es {area}");
+            Contenido = nuevoContenido;
+        }
+        public T Obtener() { return Contenido; }
+        public void MostrarDatos()
+        {
+            Console.WriteLine($"El valor de contenido es:{Contenido}");
+            Console.WriteLine($"El tipo de dato de contenido es {typeof(T).Name}");
         }
     }
-    class Triangulo : Figura
-    {
-        public Triangulo(double lado, double altura) : base (lado)
-        {
-            Altura = altura;
-        }
-        public override void CalcularArea()
-        {
-            double area;
-            area = Lado * Altura /2;
-            Console.WriteLine($"Valor de la base: {Lado}. Valor de la altura: {Altura}\nEl área de la figura es {area}");
-        }
-    }
-    class Rectangulo : Figura
-    {
-        public Rectangulo(double lado, double altura) : base(lado)
-        {
-            Altura = altura;
-        }
-        public override void CalcularArea()
-        {
-            double area;
-            area = Lado * Altura;
-            Console.WriteLine($"Valor de la base: {Lado}. Valor de la altura: {Altura}\nEl área de la figura es {area}");
-        }
-    }
-    class Circulo : Figura 
-    {
-        public Circulo(double radio)
-        {
-            Radio = radio;
-        }
-        public override void CalcularArea()
-        {
-            double area;
-            area = (Radio*Radio) * 3.1416;
-            Console.WriteLine($"Valor del radio: {Radio} \nEl área de la figura es {area}");
-        }
-    }
-    internal class Program
-    {
+
+   class Program
+   {
         static void Main(string[] args)
         {
-            Console.WriteLine("============== CALCULO DE FIGURAS =================");
-            Console.WriteLine("======= CUADRADO =======");
-            Cuadrado cuadrado = new Cuadrado(4);
-            cuadrado.CalcularArea();
-            Console.WriteLine("======= Rectángulo =======");
-            Rectangulo rectangulo = new Rectangulo(10, 5);
-            rectangulo.CalcularArea();
-            Console.WriteLine("======= Triángulo =======");
-            Triangulo triangulo = new Triangulo(12, 7);
-            triangulo.CalcularArea();
-            Console.WriteLine("======= Círculo =======");
-            Circulo circulo = new Circulo(8);
-            circulo.CalcularArea();
-            Console.ReadKey();
+            Console.WriteLine($"Instanciando la clase Caja con diferentes Valores");
+            //Instanciar la clase con int
+            Caja<int> nuevaCaja = new Caja<int>(100);
+            nuevaCaja.MostrarDatos();
+            nuevaCaja.Guardar(200);
+            nuevaCaja.MostrarDatos();
+            int valor = nuevaCaja.Obtener();
+            Console.WriteLine($"El valor es {valor}\n");
 
+            Caja<long> caja2 = new Caja<long>(300);
+            caja2.MostrarDatos();
+            caja2.Guardar(500);
+            caja2.MostrarDatos();
+            long valor2 = caja2.Obtener();
+            Console.WriteLine($"El valor es {valor2}\n");
+
+            Caja<double> caja3 = new Caja<double>(200.5);
+            caja3.MostrarDatos();
+            caja3.Guardar(400.5);
+            caja3.MostrarDatos();
+            double valor3 = caja3.Obtener();
+            Console.WriteLine($"El valor es {valor3}\n");
+
+            Caja<string> caja4 = new Caja<string>("Mi gato se llama Chilaquil");
+            caja4.MostrarDatos();
+            caja4.Guardar("Mi gata se llama Yoda");
+            caja4.MostrarDatos();
+            string valor4 = caja4.Obtener();
+            Console.WriteLine($"El valor es {valor4}\n");
+
+            Caja<decimal> caja5 = new Caja<decimal>(150);
+            caja5.MostrarDatos();
+            caja5.Guardar(650);
+            caja5.MostrarDatos();
+            decimal valor5 = caja5.Obtener();
+            Console.WriteLine($"El valor es {valor5} \n");
+            Console.ReadKey();
         }
-    }
+   }
+    
 }
+    
+
