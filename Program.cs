@@ -1,69 +1,72 @@
 ﻿using System;
 
-
-namespace Uso_Funciones
+namespace Conversion_Temperaturas
 {
     internal class Program
     {
-        static void header()
+        static double ConvertirCaF(double c)
         {
-            Console.WriteLine("Bienvenido al curso programación orientada a objetos");
-            Console.WriteLine("------------------------------------------------------");
+            double fahrenheit;
+            fahrenheit = (c * 9 / 5) + 32;
+            return fahrenheit;
         }
-        static double Sumar(double numero1, double numero2)
+        static double ConvertirCaK(double c)
         {
-            return (numero1 + numero2);
+            double kelvin;
+            kelvin = (c + 273.15);
+            return kelvin;
         }
-        static double Resta(double numero1, double numero2)
+        static double ConvertirFaC(double f)
         {
-            return (numero1 - numero2); 
+            double celsius;
+            celsius = (f - 32) * 5 / 9;
+            return celsius;
         }
-        static double Multiplicacion(double numero1, double numero2)
+        static double ConvertirKaC(double k)
         {
-            return (numero1 * numero2);
-        }
-        static double Division(double numero1, double numero2)
-        {
-            return (numero1 / numero2);
-        }
-        static void Nombre(string mensaje)
-        {
-            Console.WriteLine($"Nombre del programa:{mensaje}");
+            double celsius;
+            celsius = k - 273.15;
+            return celsius;
         }
         static void Main(string[] args)
         {
-            string programa = "Aprendiendo funciones";
-            string respuesta;
-            header();
-            Nombre(programa);
+            int respuesta;
+            string respuesta2;
+            Console.WriteLine("============= Conversión de temperaturas ======================");
             do
             {
-
-
-                Console.WriteLine("¿Qué función quieres hacer? \n1.Suma \n2.Resta\n3.Multiplicación\n4.División");
-                int variable = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Ingresa el primer número");
-                double numero1 = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Ingresa el segundo número");
-                double numero2 = Convert.ToDouble(Console.ReadLine());
-                switch (variable)
+                do
+                {
+                    Console.WriteLine("Elige la operación que quieres hacer \n1.Convertir Celsius a Fahrenheit\n2.Convertir Fahrenheit a Celsius");
+                    Console.WriteLine("3.Convertir Celsius a Kelvin\n4.Convertir Kelvin a Celsius");
+                    respuesta = Convert.ToInt32(Console.ReadLine());
+                } while (respuesta <= 0 || respuesta > 4);
+                switch (respuesta)
                 {
                     case 1:
-                        Console.WriteLine($"El resultado de la función es:{Sumar(numero1, numero2)}");
+                        Console.WriteLine("Ingresa la temperatura en Celsius");
+                        double c = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine($"La temperatura en Fahrenheit es {ConvertirCaF(c)}°F");
                         break;
                     case 2:
-                        Console.WriteLine($"El resultado de la función es: {Resta(numero1, numero2)}");
+                        Console.WriteLine("Ingresa la temperatura en  Fahrenheit");
+                        double f = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine($"La temperatura en Celsius es {ConvertirFaC(f)} °C");
                         break;
                     case 3:
-                        Console.WriteLine($"El resultado de la función es: {Multiplicacion(numero1, numero2)}");
+                        Console.WriteLine("Ingresa la temperatura en Celsius");
+                        double c2 = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine($"La temperatura en Kelvin es {ConvertirCaK(c2)} °K");
                         break;
                     case 4:
-                        Console.WriteLine($"El resultado de la función es: {Division(numero1, numero2)}");
+                        Console.WriteLine("ingresa la temperatura en Kelvin");
+                        double k = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine($"La temperatura en Celsius es {ConvertirKaC(k)} °C");
                         break;
                 }
-                Console.WriteLine("¿Quieres hacer otra operación? sí/no");
-                respuesta = Console.ReadLine().ToLower();
-            } while (respuesta == "si");
+                Console.WriteLine("¿Quieres convertir otra temperatura? si/no");
+                respuesta2 = Console.ReadLine().ToLower();
+            } while (respuesta2 == "si");
             Console.WriteLine("Ha finalizado el programa");
             Console.ReadKey();
         }
