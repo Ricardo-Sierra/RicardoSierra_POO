@@ -1,0 +1,60 @@
+using System;
+
+namespace Clase_Estudiante
+{
+    public class Estudiante
+    {
+        //Atributos :)
+        public  string Nombre { get; set; }
+        public int Edad {  get; set; }
+        public string Carrera { get; set; }
+        public int Matricula { get; set; }
+        
+        //Métodos :D
+        public void Estudiar()
+        {
+            Console.WriteLine($"{Nombre} está estudiando");
+        }
+        public void HacerTarea()
+        {
+            Console.WriteLine($"{Nombre} está haciendo tarea");
+        }
+        public void IrEscuela()
+        {
+            Console.WriteLine($"{Nombre} está yendo a la escuela");
+        }
+        public void MostrarInfo() 
+        {
+            Console.WriteLine($"Nombre: {Nombre}\nEdad: {Edad}\nCarrera: {Carrera}\nMatrícula: {Matricula}");
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Estudiante estu1 = new Estudiante();
+            estu1.Nombre = "Ricardo";
+            estu1.Edad = 18;
+            estu1.Carrera = "Ingeniería en TIC'S";
+            estu1.Matricula = 25470301;
+            
+            Estudiante estu2 = new Estudiante();
+            estu2.Nombre = "Zury";
+            estu2.Edad = 18;
+            estu2.Carrera = "Fisioterapia";
+            estu2.Matricula = 25345819;
+
+            estu1.MostrarInfo();
+            Console.WriteLine("========================================================================");
+            estu2.MostrarInfo();
+            Console.WriteLine("========================================================================");
+            estu1.Estudiar();
+            estu2.Estudiar();
+            estu1.HacerTarea();
+            estu2.HacerTarea();
+            estu1.IrEscuela();
+            estu2.IrEscuela();
+            Console.ReadKey();
+        }
+    }
+}
