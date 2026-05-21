@@ -1,39 +1,33 @@
 ﻿using System;
-using System.Diagnostics.Eventing.Reader;
 
-namespace Indice_de_masa_muscular
+namespace RicardoSierra_Par_Impar
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Ingresa tu peso en kg");
-            double peso = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Ingresa tu estatura en metros");
-            double estatura = Convert.ToDouble(Console.ReadLine());
-            double imc = peso / (estatura * estatura);
-            if (imc < 18.5)
+            string respuesta;
+            do
             {
-                Console.WriteLine($"Su IMC es {imc}, y tiene un peso bajo");
-            }
-            else if (imc >= 18.5 && imc < 25)
-            {
-                Console.WriteLine($"Su IMC es {imc} y tiene un peso normal");
-            }
-            else if (imc >= 25 && imc < 30)
-            {
-                Console.WriteLine($"Su IMC es {imc} y tiene sobrepeso");
-            }
-            else if (imc >= 30 && imc < 40)
-            {
-                Console.WriteLine($"Su IMC es {imc} y tiene obesidad");
-            }
-            else
-            { 
-                Console.WriteLine($"Su IMC es {imc} y tiene obesidad extrema");
-            }
+                Console.WriteLine("Introduce un número entero");
+                int num_1 = Convert.ToInt32(Console.ReadLine());
+                if (num_1 == 0)
+                {
+                    Console.WriteLine("El número es cero y es par");
+                }
+                else if (num_1 % 2 != 0)
+                {
+                    Console.WriteLine($"El número es {num_1} y es IMPAR");
+                }
+                else
+                {
+                    Console.WriteLine($"El número es {num_1} y es PAR");
+                }
+                Console.WriteLine("¿Quieres analizar otro número? (si/no)");
+                respuesta = Console.ReadLine().ToLower();
+            } while(respuesta == "si");
+            Console.WriteLine("Ha finalizado el programa :)");
             Console.ReadKey();
         }
-
     }
 }
